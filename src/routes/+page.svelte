@@ -159,30 +159,29 @@
 </svelte:head>
 
 <section class="flex flex-col justify-center items-center flex-grow-6">
-  <h1 class="w-full text-4xl font-bold mb-8 mt-4">SSL Checker</h1>
-  <div
-    class="bg-gray-100 dark:bg-gray-800 p-6 rounded-sm shadow-md w-full relative welcome"
-  >
-    <input
-      bind:value={hostname}
-      placeholder="Server Hostname"
-      class="p-2 w-full rounded-sm border dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 mb-4"
-    />
-    <button
-      on:click={handleCheckSSL}
-      class="w-full bg-[#ff3e00] hover:bg-[#4075a6] text-white p-2 rounded-sm mb-4"
-    >
-      Check SSL
-    </button>
-    {#if error}
-      <div class="text-red-500 mb-4">{error}</div>
-    {/if}
-    {#if isLoading}
-      <div class="flex justify-center items-center h-40">
-        <Spinner color="blue" />
-      </div>
-    {:else if sslInfo.commonName}
-      <div class="bg-[#4075a6] p-6 rounded-sm text-white shadow-lg w-full">
+	<img src="/ssl-checker-logo.png" alt="SSL Checker" class="h-24 w-24 mb-4" />
+	<h1 class="w-full text-4xl font-bold mb-8 mt-4 text-[#ff3e00]">SSL Checker</h1>
+	<div class="bg-white shadow-xl p-6 rounded-lg w-full relative welcome">
+	  <input
+		bind:value={hostname}
+		placeholder="Enter Server Hostname..."
+		class="p-3 w-full rounded-lg border dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 mb-4 transition-all duration-200 hover:border-[#ff3e00] focus:border-[#ff3e00] focus:outline-none"
+	  />
+	  <button
+		on:click={handleCheckSSL}
+		class="w-full bg-[#ff3e00] hover:bg-[#e83500] text-white p-3 rounded-lg mb-4 transition-all duration-200 transform hover:scale-[1]"
+	  >
+		Check SSL
+	  </button>
+	  {#if error}
+		<div class="text-red-500 mb-4 border-l-4 border-red-500 pl-3">{error}</div>
+	  {/if}
+	  {#if isLoading}
+		<div class="flex justify-center items-center h-40">
+		  <Spinner color="blue" />
+		</div>
+	  {:else if sslInfo.commonName}
+		<div class="bg-[#4075a6] p-6 rounded-lg text-white shadow-lg w-full">
         <div class="flex items-center mb-4">
           <img src="/server-ok.png" alt="Server OK" class="h-12 w-12 mr-4" />
           <div>
